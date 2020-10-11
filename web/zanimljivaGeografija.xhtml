@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Zanimljiva Geografija</title>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+            <p:outputPanel class="header"><h1>ETF KVISKOTEKA</h1></p:outputPanel>
+   
+        </h:form>
+        <h:form>
+            <p:panel id="panelZanGeo">
+                <div>
+                    <p:outputLabel value="#{supervizorKontroler.poruka1}" class="mojBroj"></p:outputLabel>
+                </div>
+                
+                <p:panelGrid columns="2">
+                    <p:outputLabel>Preostalo vreme</p:outputLabel>
+                    <p:outputLabel value="#{supervizorKontroler.timer2}"></p:outputLabel>
+                    
+                    <p:outputLabel value="Na slovo na slovo:"></p:outputLabel>
+                    <p:outputLabel value="#{supervizorKontroler.izabranoSlovo}"></p:outputLabel>
+                    
+                   <p:poll interval="1" listener="#{supervizorKontroler.dajSlovo()}" update="panelZanGeo" stop="#{supervizorKontroler.slovoIzabrano}"></p:poll>
+                   <p:commandButton value="STOP" action="#{supervizorKontroler.stopMojeSlovo()}" update="panelZanGeo" disabled="#{supervizorKontroler.slovoIzabrano}"></p:commandButton>
+                    
+                    Grad:
+                    <p:inputText value="#{supervizorKontroler.grad}" disabled="#{not supervizorKontroler.slovoIzabrano || supervizorKontroler.disInput2}"></p:inputText>
+                    
+                    Drzava:
+                    <p:inputText value="#{supervizorKontroler.drzava}" disabled="#{not supervizorKontroler.slovoIzabrano || supervizorKontroler.disInput2}"></p:inputText>
+                    
+                    Planina:
+                    <p:inputText value="#{supervizorKontroler.planina}" disabled="#{not supervizorKontroler.slovoIzabrano || supervizorKontroler.disInput2}"></p:inputText>
+                    
+                    Reka:
+                    <p:inputText value="#{supervizorKontroler.reka}" disabled="#{not supervizorKontroler.slovoIzabrano || supervizorKontroler.disInput2}"></p:inputText>
+                    
+                    Jezero:
+                    <p:inputText value="#{supervizorKontroler.jezero}" disabled="#{not supervizorKontroler.slovoIzabrano || supervizorKontroler.disInput2}"></p:inputText>
+                    
+                    More:
+                    <p:inputText value="#{supervizorKontroler.more}" disabled="#{not supervizorKontroler.slovoIzabrano || supervizorKontroler.disInput2}"></p:inputText>
+                    
+                    Biljka:
+                    <p:inputText value="#{supervizorKontroler.biljka}" disabled="#{not supervizorKontroler.slovoIzabrano || supervizorKontroler.disInput2}"></p:inputText>
+                    
+                    Zivotinja:
+                    <p:inputText value="#{supervizorKontroler.zivotinja}" disabled="#{not supervizorKontroler.slovoIzabrano || supervizorKontroler.disInput2}"></p:inputText>
+                    
+                    
+                    
+                <p:poll interval="1" listener="#{supervizorKontroler.zanGeoPredaj()}" update="panelZanGeo" stop="#{supervizorKontroler.stopPoll2}"></p:poll>
+                <p:commandButton value="Predaj" action="#{supervizorKontroler.zanGeoPredajOdmah()}"  update="panelZanGeo" disabled="#{supervizorKontroler.disabled2}"></p:commandButton>
+              
+                
+                </p:panelGrid>
+                
+                
+            </p:panel>
+        </h:form>
+         <h:form>
+            <p:panel>
+                <p:commandButton value="Odustani" action="#{supervizorKontroler.predaj()}" class="logout"></p:commandButton>
+            </p:panel>
+        </h:form>
+        
+ <h:form>
+            <p:outputPanel class="footer">Zanimljiva Geografija - Magdalena Stankovic 2016/0065</p:outputPanel>
+   
+        </h:form>       
+        
+    </h:body>
+</html>
+

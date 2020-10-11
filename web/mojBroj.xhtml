@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Moj broj</title>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>
+     <h:form>
+         
+         <h:form>
+            <p:outputPanel class="header"><h1>ETF KVISKOTEKA</h1></p:outputPanel>
+   
+        </h:form>
+            <p:panel id="panelp"> 
+                <div>
+                    <p:outputLabel value="#{supervizorKontroler.poruka}" class="mojBroj"></p:outputLabel>
+                </div>
+                
+             
+                <p:panelGrid columns="2">
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">Moguce operacije:</f:facet>
+                        
+                        Plus 
+                        <p:commandButton value="+" action="#{supervizorKontroler.pritisniPlus()}"></p:commandButton>
+                        
+                        Minus 
+                        <p:commandButton value="-" action="#{supervizorKontroler.pritisniMinus()}"></p:commandButton>
+                        
+                        Puta 
+                        <p:commandButton value="*"  action="#{supervizorKontroler.pritisniPuta()}"></p:commandButton>
+                        
+                        Podeljeno
+                        <p:commandButton value="/" action="#{supervizorKontroler.pritisniPodeljeno()}"></p:commandButton>
+                        
+                        Otvorena zagrada
+                        <p:commandButton value="(" action="#{supervizorKontroler.pritisniOtvorenaZagrada()}"></p:commandButton>
+                        
+                        Zatvorena zagrada 
+                        <p:commandButton value=")"  action="#{supervizorKontroler.pritisniZatvorenaZagrada()}"></p:commandButton>
+                    </p:panelGrid>   
+                    
+                <p:panelGrid columns="2">
+                <p:outputLabel>Preostalo vreme</p:outputLabel>
+                <p:outputLabel value="#{supervizorKontroler.timer1}"></p:outputLabel>
+                    
+                    <p:outputLabel value="Prvi broj:"></p:outputLabel>
+                    <p:commandButton id="prvi" value="#{supervizorKontroler.prvi}"   action="#{supervizorKontroler.pritisniPrvoDugme()}" disabled="#{not supervizorKontroler.sviBrojevi or supervizorKontroler.prvoJeKorisceno or supervizorKontroler.poslednjiJeBroj}"></p:commandButton>
+                    
+                    
+                    
+                    <p:outputLabel value="Drugi broj:"></p:outputLabel>
+                    <p:commandButton id="drugi" value="#{supervizorKontroler.drugi}" action="#{supervizorKontroler.pritisniDrugpDugme()}" disabled="#{not supervizorKontroler.sviBrojevi or supervizorKontroler.drugoJeKorisceno or supervizorKontroler.poslednjiJeBroj}"></p:commandButton>
+                 
+                    
+                    <p:outputLabel value="Treci broj:"></p:outputLabel>
+                    <p:commandButton id="treci" value="#{supervizorKontroler.treci}" action="#{supervizorKontroler.pritisniTreceDugme()}" disabled="#{not supervizorKontroler.sviBrojevi or supervizorKontroler.treceJeKorisceno or supervizorKontroler.poslednjiJeBroj}"></p:commandButton>
+                    
+                    
+                    <p:outputLabel value="Cetvrti broj:"></p:outputLabel>
+                    <p:commandButton id="cetvrti" value="#{supervizorKontroler.cetvrti}" action="#{supervizorKontroler.pritisniCetvrtoDugme()}" disabled="#{not supervizorKontroler.sviBrojevi or supervizorKontroler.cetvrtoJeKorisceno or supervizorKontroler.poslednjiJeBroj}"></p:commandButton>
+                    
+                    
+                    <p:outputLabel value="Peti broj:"></p:outputLabel>
+                    <p:commandButton id="peti" value="#{supervizorKontroler.peti}" action="#{supervizorKontroler.pritisniPetoDugme()}" disabled="#{not supervizorKontroler.sviBrojevi or supervizorKontroler.petoJeKorisceno or supervizorKontroler.poslednjiJeBroj or supervizorKontroler.poslednjiJeBroj}"></p:commandButton>
+                    
+                  
+                    
+                    <p:outputLabel value="Sesti broj:"></p:outputLabel>
+                    <p:commandButton id="sesti" value="#{supervizorKontroler.sesti}" action="#{supervizorKontroler.pritisniSestoDugme()}" disabled="#{not supervizorKontroler.sviBrojevi or supervizorKontroler.sestooJeKorisceno or supervizorKontroler.poslednjiJeBroj}"></p:commandButton>
+                    
+                    <p:outputLabel value="Ciljani broj:"></p:outputLabel>
+                    <p:commandButton id="sedmi" value="#{supervizorKontroler.sedmi}" disabled="#{not supervizorKontroler.sviBrojevi}"></p:commandButton>
+                  
+                    <p:poll interval="1" listener="#{supervizorKontroler.dajBrojeve()}" update="panelp" stop="#{supervizorKontroler.sviBrojevi}" ignoreAutoUpdate="true"></p:poll>
+                    <p:commandButton value="STOP" action="#{supervizorKontroler.stopMojBroj()}" update="panelp" disabled="#{supervizorKontroler.sviBrojevi}" ignoreAutoUpdate="true"></p:commandButton>
+               
+               <p:outputLabel value="Resenje"></p:outputLabel>
+               <p:outputLabel value="#{supervizorKontroler.dobijeniBroj}" ></p:outputLabel>
+               
+               <p:outputLabel value="Izbrisi"></p:outputLabel>
+               <p:commandButton value="Izbrisi" action="#{supervizorKontroler.izbrisiMojBroj()}"></p:commandButton>
+               
+               <p:poll interval="1" listener="#{supervizorKontroler.mojBrojPredaj()}" update="panelp" stop="#{supervizorKontroler.stopPoll1}" ignoreAutoUpdate="true"></p:poll>
+               <p:commandButton value="Predaj" action="#{supervizorKontroler.mojBrojPredajOdmah()}"  update="panelp" disabled="#{supervizorKontroler.disabled1}" ignoreAutoUpdate="true"></p:commandButton>
+               
+               
+           
+                </p:panelGrid>
+                    
+               </p:panelGrid> 
+            </p:panel>
+        
+        </h:form>
+       <h:form>
+            <p:panel>
+                <p:commandButton value="Odustani" action="#{supervizorKontroler.predaj()}" class="logout"></p:commandButton>
+            </p:panel>
+        </h:form>
+         <h:form>
+            <p:outputPanel class="footer">Moj Broj - Magdalena Stankovic 2016/0065</p:outputPanel>
+   
+        </h:form>
+        
+    </h:body>
+</html>
+

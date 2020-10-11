@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>  
+      
+ 
+       
+        <h:form>
+            <p:outputPanel class="header"><h1>ETF KVISKOTEKA</h1></p:outputPanel>
+   
+        </h:form>
+        
+       
+            <br/>
+            <h:form class="form1">
+            <p:commandButton value="Gost" action="#{loginKontroler.gost()}" ></p:commandButton>
+        </h:form>
+            <br/>
+            <br/>
+            <h:form id="f1" class="form">
+            <p:messages id="messages2" showDetail="true" closable="true"  >
+              
+    </p:messages>
+               
+                <h:panelGrid id="grid" columns="3" >
+            <p:outputLabel for="username"  value="Username:" />
+            <p:inputText id="username" value="#{loginKontroler.username}"  required="true"  label="username" requiredMessage="Ovo polje mora biti popunjeno!" />
+            <p:message for="username" display="text" ></p:message>
+             
+            <p:outputLabel for="password" value="Password:" />
+            <p:password id="password" value="#{loginKontroler.password}" required="true" label="password" requiredMessage="Ovo polje mora biti popunjeno!"/>
+            <p:message for="password" display="text"></p:message>
+            
+            <p:outputLabel value="Tip korisnika:" ></p:outputLabel>
+            <p:selectOneRadio value="#{loginKontroler.tip}" required="true" requiredMessage="Ovo polje mora biti popunjeno!" >
+                <f:selectItem itemValue="T" itemLabel="Takmicar"></f:selectItem>
+                <f:selectItem itemValue="A" itemLabel="Administrator"></f:selectItem>
+                <f:selectItem itemValue="S" itemLabel="Supervizor"></f:selectItem>
+            </p:selectOneRadio>
+            <p:message for="password" display="text"></p:message>
+               
+            <f:facet name="footer">
+                <p:commandButton value="Login" action="#{loginKontroler.login()}" update="f1"  />
+            </f:facet>
+             </h:panelGrid>
+          
+        </h:form>
+        <h:form class="form">
+              <h:panelGrid columns="3">
+            <p:commandLink value="Nemate nalog?" action="#{loginKontroler.registracija()}"></p:commandLink>
+            <p:commandLink value="Zelite da promenite lozinku?" action="#{loginKontroler.promenaLozinke()}"></p:commandLink>
+            <p:commandLink value="Zaboravili ste lozinku?" action="#{loginKontroler.zaboravljenaLozinka1()}"></p:commandLink>
+            </h:panelGrid>
+            
+        </h:form>
+    
+        
+      
+    
+    </h:body>
+      
+        <h:form>
+            <p:outputPanel class="footer">Pocetna strana - Magdalena Stankovic 2016/0065</p:outputPanel>
+   
+        </h:form>
+</html>
+

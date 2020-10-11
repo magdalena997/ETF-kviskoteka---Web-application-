@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Supervizor</title>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:outputPanel class="header"><h1>ETF KVISKOTEKA</h1></p:outputPanel>
+   
+        </h:form>
+        <h:form>
+            <p:panel id="p21">
+                <p:messages id="m1" showDetail="true" closable="true"  >
+                  </p:messages>   
+            <p:commandButton value="Anagram" action="#{supervizorKontroler.show()}">
+                    <f:ajax execute="@form" render="@form"></f:ajax>
+                </p:commandButton>
+            <p:panelGrid columns="2" rendered="#{supervizorKontroler.isValid}">
+                <p:outputLabel value="Unesi zagonetku:" ></p:outputLabel>
+                <p:inputText value="#{supervizorKontroler.zagonetaka}"></p:inputText>
+                
+                <p:outputLabel value="Unesi resenje zagonetke:"></p:outputLabel>
+                <p:inputText value="#{supervizorKontroler.resenje}"></p:inputText>
+                
+                <p:commandButton value="Dodaj" action="#{supervizorKontroler.dodajUBazu()}" update="p21"></p:commandButton>
+            </p:panelGrid>
+          </p:panel>
+        </h:form>
+        <h:form>
+            <p:panel id="pSuperVizor">
+                   <p:messages id="m12" showDetail="true" closable="true"  >
+                       </p:messages>
+                <p:commandButton value="Zanimljiva geografija" action="#{supervizorKontroler.proveriPojmoveUZanGeo()}" update="pSuperVizor"></p:commandButton>
+                <p:dataTable id="tabela" value="#{supervizorKontroler.zanlista}" var="zanimljivaLista" rendered="#{supervizorKontroler.adminZanimljiva}">
+                    <f:facet name="header">Proveri ispravnost pojmova</f:facet>
+                    
+                      <p:column headerText="Vrsta">
+                          <p:outputLabel value="#{zanimljivaLista.vrsta}" /> </p:column>
+ 
+                    <p:column headerText="Naziv">
+                        <p:outputLabel value="#{zanimljivaLista.ime}"/> </p:column>
+                    
+                    <p:column headerText="Prihvati" > 
+                        <p:commandButton value="Prihvati" action="#{supervizorKontroler.prihvatiPojam(zanimljivaLista)}" update="tabela"  ></p:commandButton>
+                    </p:column>
+                
+                <p:column headerText="Odbij" > 
+                    <p:commandButton value="Odbij" action="#{supervizorKontroler.odbijPojamZan(zanimljivaLista)}" update="tabela" ></p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                    
+            </p:panel>
+        </h:form>   
+        <h:form>
+            <hr/>
+            <p:commandButton value="Logout" action="#{supervizorKontroler.logout()}" ></p:commandButton>
+        </h:form>
+        
+         <h:form>
+            <p:outputPanel class="footer">Supervizor - Magdalena Stankovic 2016/0065</p:outputPanel>
+   
+        </h:form>
+        
+    </h:body>
+</html>
+

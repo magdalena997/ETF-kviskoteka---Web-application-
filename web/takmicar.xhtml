@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Takmicar</title>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>
+              <h:form>
+            <p:outputPanel class="header"><h1>ETF KVISKOTEKA</h1></p:outputPanel>
+   
+        </h:form>
+        <br/> <br/>
+        <center>
+        <h:form>
+            <p:messages id="mess12" showDetail="true" closable="true"  >
+            </p:messages>
+        </h:form>
+        <h:form id="form3">
+            
+            <p:messages id="messa" showDetail="true" closable="true" rendered="#{supervizorKontroler.rend}" >
+            </p:messages>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Igraj igru dana"></p:outputLabel>
+                    <p:commandButton value="Zapocni" action="#{supervizorKontroler.zapocniIgruDana()}" update="form3"></p:commandButton>
+                    
+                    
+                </p:panelGrid>
+           
+        </h:form>
+        </center>
+        <center>
+        <h:form id="form4">
+            <p:messages id="mess1" showDetail="true" closable="true" rendered="#{supervizorKontroler.rend}" >
+            </p:messages>
+           <p:panelGrid columns="2">
+                    <p:outputLabel value="Rang lista za danasnji dan"></p:outputLabel>
+                    <p:commandButton value="Rang lista" action="#{supervizorKontroler.rangLista()}" update="form4"></p:commandButton>
+                    
+                    
+                </p:panelGrid>
+        </h:form>
+        </center>
+        <h:form>
+            <br/>
+            <hr/>
+            
+            <p:commandButton value="Logout" action="#{supervizorKontroler.logout()}" class="logout"></p:commandButton>
+            
+        </h:form>
+        <h:form>
+            <p:outputPanel class="footer">Takmicar - Magdalena Stankovic 2016/0065</p:outputPanel>
+   
+        </h:form>
+    </h:body>
+</html>
+

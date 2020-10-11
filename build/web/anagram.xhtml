@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+       
+        <title>Anagram</title>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>
+        
+              <h:form>
+            <p:outputPanel class="header"><h1>ETF KVISKOTEKA</h1></p:outputPanel>
+   
+        </h:form>
+        <br/>
+        <br/>
+        
+        <h:form>
+             <div>
+                    <p:outputLabel value="#{supervizorKontroler.poruka2}" class="mojBroj"></p:outputLabel>
+                </div>
+                
+          
+            <p:panel id="anagrampanel">
+            <h:panelGrid columns="2">
+                <p:outputLabel>Preostalo vreme</p:outputLabel>
+                <p:outputLabel value="#{supervizorKontroler.timer}"></p:outputLabel>
+                <p:outputLabel value="#{supervizorKontroler.zagonetaka}"></p:outputLabel>
+                <p:inputText id="input" value="#{supervizorKontroler.resenje}" disabled="#{supervizorKontroler.disInput}"></p:inputText>
+                
+                <p:poll interval="1" listener="#{supervizorKontroler.anagramPredaj()}" update="@form" stop="#{supervizorKontroler.stopPoll}"></p:poll>
+                <p:commandButton value="Predaj" action="#{supervizorKontroler.anagramPredajOdmah()}"  update="@form"></p:commandButton>
+                
+                <br/>
+                
+                <p:poll id="po" interval="5" listener="#{supervizorKontroler.sledecaIgraJeMojBrojPoll()}" widgetVar="poll1"  ></p:poll>
+               <!-- <p:commandLink value="Sledeca igra" action="#{supervizorKontroler.sledecaIgraJeMojBroj()}" disabled="#{supervizorKontroler.disabled}"></p:commandLink>
+        -->    </h:panelGrid>
+            </p:panel>
+        </h:form>
+        <h:form>
+            <p:panel>
+                <p:commandButton value="Predaj" action="#{supervizorKontroler.predaj()}" class="logout"></p:commandButton>
+            </p:panel>
+        </h:form>
+        
+           <h:form>
+            <p:outputPanel class="footer">Anagram - Magdalena Stankovic 2016/0065</p:outputPanel>
+   
+        </h:form>
+        
+    </h:body>
+</html>
+

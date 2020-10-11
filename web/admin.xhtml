@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Administrator</title>
+            <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+            <p:outputPanel class="header"><h1>ETF KVISKOTEKA</h1></p:outputPanel>
+        </h:form>
+   <h:form id="form">
+             <p:messages id="mesii" showDetail="true" closable="true"  >
+            </p:messages>
+       <p:commandButton value="Administriranje korisnickih naloga" action="#{supervizorKontroler.adminKorNaloga()}" update="form"></p:commandButton>
+       <br/>
+       <p:dataList value="#{supervizorKontroler.korisnici}" var="kor" type="unordered" itemType="none"  styleClass="paginated" rendered="#{supervizorKontroler.adminKorNaloga}" >
+            <f:facet name="header">
+            Administriranje korisnickih naloga
+        </f:facet>
+        <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail" styleClass="ui-icon pi pi-search" style="float:left;margin-right:10px;margin-top:3px; color:#333333">
+            <f:setPropertyActionListener value="#{kor}" target="#{supervizorKontroler.selectedKor}" />
+            <h:outputText value="#{kor.username}, #{kor.zanimanje}" />
+        </p:commandLink>
+            <h:outputText value="#{kor.username}, #{kor.zanimanje}" style="display:inline-block"/>
+    </p:dataList>
+ 
+    <p:dialog header="Korisnik Info" widgetVar="carDialog" modal="true" showEffect="blind" hideEffect="explode" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty supervizorKontroler.selectedKor}" columnClasses="label,value">
+                <f:facet name="header">
+                    <p:graphicImage value="resources/images/#{supervizorKontroler.selectedKor.slika}" alt="Image" height="100" width="100"/> 
+                </f:facet>
+ 
+                <h:outputText value="Ime:" />
+                <h:outputText value="#{supervizorKontroler.selectedKor.ime}" />
+ 
+                <h:outputText value="Prezime" />
+                <h:outputText value="#{supervizorKontroler.selectedKor.prezime}" />
+ 
+                <h:outputText value="Email:" />
+                <h:outputText value="#{supervizorKontroler.selectedKor.email}"/>
+ 
+                <h:outputText value="JMBG" />
+                <h:outputText value="#{supervizorKontroler.selectedKor.JMBG}" />
+                
+                <h:outputText value="Pitanje:" />
+                <h:outputText value="#{supervizorKontroler.selectedKor.pitanje}" />
+ 
+                <h:outputText value="Odgovor" />
+                <h:outputText value="#{supervizorKontroler.selectedKor.odgovor}" />
+                
+                <h:outputText value="Tip" />
+                <h:outputText value="#{supervizorKontroler.selectedKor.tip}" />
+                
+                <p:commandButton value="Prihvati" action="#{supervizorKontroler.prihvati(supervizorKontroler.selectedKor)}" update="form"></p:commandButton>
+                <p:commandButton value="Odbij" action="#{supervizorKontroler.odbij(supervizorKontroler.selectedKor)}" update="form"></p:commandButton>
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+        </h:form>
+        
+        <br/>
+        <h:form id="form1">
+             <p:messages id="mes" showDetail="true" closable="true"  >
+            </p:messages>
+            
+            <p:panelGrid columns="2" >
+                <f:facet name="header">
+                    Administriranje igre dana
+                </f:facet>
+                <p:outputLabel value="Izaberi datum:"></p:outputLabel>
+                <p:calendar value="#{supervizorKontroler.datum}" mindate="#{supervizorKontroler.minDate}"></p:calendar>
+                
+                <p:outputLabel value="Izaberite anagram:"></p:outputLabel>
+                <p:selectOneMenu value="#{supervizorKontroler.mojaZagonetka}">
+                    <f:selectItems value="#{supervizorKontroler.zagonetke}" var="zag" itemLabel="#{zag.zagonetka}" itemValue="#{zag.zagonetka}" ></f:selectItems>
+                </p:selectOneMenu>
+                
+                <p:commandButton value="Igra dana" action="#{supervizorKontroler.kreirajIgruDana()}" update="form1"></p:commandButton>
+            </p:panelGrid>
+            <br/>
+            <br/>
+            <p:commandButton value="Logout" action="#{supervizorKontroler.logout1()}" update="@form"></p:commandButton> 
+        </h:form>       
+           <h:form>
+            <p:outputPanel class="footer">Administrator - Magdalena Stankovic 2016/0065</p:outputPanel>
+   
+        </h:form>    
+    </h:body>
+</html>
+

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Zaboravljena lozinka</title>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>
+       
+                        
+            <h:form>
+            <p:outputPanel class="header"><h1>ETF KVISKOTEKA</h1></p:outputPanel>
+   
+        </h:form>
+        
+            <br/><br/>
+            
+             <h:form>
+            <p:panel id="p">
+                 <p:messages id="messages" showDetail="true" closable="true"  >
+                 </p:messages> 
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="#{lozinkaKontroler.pitanje}"></p:outputLabel>
+                    <p:inputText value="#{lozinkaKontroler.odgovor}"></p:inputText>
+                    
+                    <p:commandButton value="Dalje" action="#{lozinkaKontroler.novaLozinka()}" update="p"></p:commandButton>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+        <h:form>
+            <p:panel>
+            <p:panelGrid columns="2">
+            <p:commandLink value="Prethodna strana" action="#{lozinkaKontroler.prethodnaStrana()}"></p:commandLink>
+            <p:commandLink value="Odustani" action="#{supervizorKontroler.logout()}"></p:commandLink>
+            </p:panelGrid>
+            </p:panel>
+        </h:form>
+        
+          <h:form>
+            <p:outputPanel class="footer">Zaboravljena lozinka - Magdalena Stankovic 2016/0065</p:outputPanel>
+   
+        </h:form>
+        
+    </h:body>
+</html>
+

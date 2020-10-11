@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Registracija novog korisnika</title>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:outputPanel class="header"><h3>ETF KVISKOTEKA</h3></p:outputPanel>      
+        </h:form> 
+        
+        
+        <center>
+        <h:form enctype="multipart/form-data">
+            <p:panel id="reg" header="Registruj se:" class="center" > 
+            <p:messages id="messages3" showDetail="true" closable="true"  >
+              
+            </p:messages> 
+                <center>
+                <h:panelGrid columns="2" >
+                <p:outputLabel value="Ime:"></p:outputLabel>
+                <p:inputText value="#{registracijaKontroler.ime}" required="true" requiredMessage="Polje za ime mora biti popunjeno!"></p:inputText>
+                
+                
+                <p:outputLabel value="Prezime:"></p:outputLabel>
+                <p:inputText value="#{registracijaKontroler.prezime}" required="true" requiredMessage="Polje za prezime mora biti popunjeno!"></p:inputText>
+                
+                <p:outputLabel value="Email:"></p:outputLabel>
+                <p:inputText value="#{registracijaKontroler.email}"  required="true" requiredMessage="Polje za email mora biti popunjeno!"></p:inputText>
+                
+                <p:outputLabel value="Zanimanje:"></p:outputLabel>
+                <p:inputText value="#{registracijaKontroler.zanimanje}" required="true" requiredMessage="Polje za zanimanje mora biti popunjeno!"></p:inputText>
+                
+                <p:outputLabel value="Username:"></p:outputLabel>
+                <p:inputText value="#{registracijaKontroler.username}" required="true" requiredMessage="Polje za username mora biti popunjeno!"></p:inputText>
+                
+                <p:outputLabel value="Lozinka:"></p:outputLabel>
+                <p:password value="#{registracijaKontroler.password}" required="true" requiredMessage="Polje za lozinku mora biti popunjeno!" ></p:password>
+                
+                <p:outputLabel value="Potvrdi lozinku:"></p:outputLabel>
+                <p:password value="#{registracijaKontroler.passwordAg}" required="true" requiredMessage="Polje za potvrdu lozinke mora biti popunjeno!"></p:password>
+                
+                <p:outputLabel value="Pol:"></p:outputLabel>
+                <p:selectOneRadio value="#{registracijaKontroler.pol}" required="true" requiredMessage="Polje za pol mora biti popunjeno!">
+                    <f:selectItem itemLabel="M" itemValue="M" />
+                    <f:selectItem itemLabel="Z" itemValue="Z" />
+                </p:selectOneRadio>
+                
+                <p:outputLabel value="JMBG:"></p:outputLabel>
+                <p:inputText value="#{registracijaKontroler.JMBG}" required="true" requiredMessage="Polje za JMBG mora biti popunjeno!"></p:inputText>
+               
+                <p:outputLabel value="Profilna slika:"></p:outputLabel>
+                <p:fileUpload id="profilna" value="#{registracijaKontroler.slika}" fileUploadListener="#{registracijaKontroler.handleFileUpload}" fileLimit="1" mode="advanced"  required="true"></p:fileUpload>
+                
+                 <p:outputLabel value="Pitanje:"></p:outputLabel>
+                 <p:inputText value="#{registracijaKontroler.pitanje}" required="true" requiredMessage="Polje za pitanje mora biti popunjeno!"></p:inputText>
+                
+                 <p:outputLabel value="Odgovor:"></p:outputLabel>
+                 <p:inputText value="#{registracijaKontroler.odgovor}" required="true" requiredMessage="Polje za odgovor mora biti popunjeno!"></p:inputText>
+                 
+                 <p:outputLabel value="Tip:"></p:outputLabel>
+                 <p:selectOneRadio value="#{registracijaKontroler.tip}" required="true" requiredMessage="Polje za tip mora biti popunjeno!">
+                    <f:selectItem itemLabel="Takmicar" itemValue="T" />
+                    <f:selectItem itemLabel="Adminstrator" itemValue="A" />
+                    <f:selectItem itemLabel="Supervizor" itemValue="S" />
+                </p:selectOneRadio>
+                 
+                <p:commandButton value="Registruj se" action="#{registracijaKontroler.registrujse()}" update="reg"/>
+      
+            </h:panelGrid>
+            </center>
+        </p:panel>
+        </h:form>
+        <h:form>
+            <p:panel>
+                <p:commandLink value="Pocetna strana" action="#{supervizorKontroler.logout()}" class="logout"></p:commandLink>
+            </p:panel>
+        </h:form>
+        </center>
+      
+    </h:body>
+</html>
+

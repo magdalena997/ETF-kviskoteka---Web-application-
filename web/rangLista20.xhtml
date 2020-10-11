@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Rang lista u proteklih 20 dana</title>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+            <p:outputPanel class="header"><h1>ETF KVISKOTEKA</h1></p:outputPanel>
+   
+        </h:form>
+        
+        <h:form>
+            <p:messages id="mess2" showDetail="true" closable="true"  >
+            </p:messages>
+            <p:dataTable value="#{supervizorKontroler.rangIgraca20}" var="igraci">
+                 <f:facet name="header">
+           Rang lista u proteklih 20 dana:
+        </f:facet>
+                <p:column headerText="Korisnik">
+                    <p:outputLabel value="#{igraci.username}"></p:outputLabel>
+                </p:column>
+                 <p:column headerText="Datum" >
+                     
+                     <p:outputLabel value="#{igraci.datum}">
+                     <f:convertDateTime pattern="MM/dd/yyyy"></f:convertDateTime>
+                     </p:outputLabel>
+                     
+                </p:column>
+                <p:column headerText="Anagram poeni:">
+                    <p:outputLabel value="#{igraci.anagramPoeni}"></p:outputLabel>
+                </p:column>
+                 <p:column headerText="Moj broj poeni">
+                     <p:outputLabel value="#{igraci.mojBrojPoeni}"></p:outputLabel>
+                </p:column>
+                <p:column headerText="Zanimljiva geografija:">
+                    <p:outputLabel value="#{igraci.zanGeoPoeni}"></p:outputLabel>
+                </p:column>
+                 <p:column headerText="Ukupno">
+                     <p:outputLabel value="#{igraci.ukPoeni}"></p:outputLabel>
+                </p:column>
+               
+            </p:dataTable>
+        </h:form>
+        <h:form>
+            <br/>
+            <hr/>
+            
+            <p:commandButton value="Prethodna strana" action="#{supervizorKontroler.gostStr()}" class="logout"></p:commandButton>
+            
+        </h:form>  
+        
+        <h:form>
+            <p:outputPanel class="footer">Rang lista u poslednjih 20 dana - Magdalena Stankovic 2016/0065</p:outputPanel>
+   
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Promena lozinke</title>
+        <h:outputStylesheet library="css" name="dizajn.css"/>
+    </h:head>
+    <h:body>
+        
+         <h:form>
+            <p:outputPanel class="header"><h1>ETF KVISKOTEKA</h1></p:outputPanel>
+   
+        </h:form>
+       
+        <center>
+        <h:form>
+            <p:panel id="pan">
+                 <p:messages id="messages5" showDetail="true" closable="true">
+        <p:autoUpdate />
+    </p:messages>
+            <p:panelGrid columns="2">
+                <f:facet name="header">
+                    <h3>Promena lozinke</h3>
+                </f:facet>
+                
+            <p:outputLabel for="username" value="Username:" />
+            <p:inputText id="username" value="#{lozinkaKontroler.username}" required="true"  label="username" />
+             
+            <p:outputLabel for="password" value="Stara lozinka:" />
+            <p:password id="password1" value="#{lozinkaKontroler.password}" required="true" label="password" />
+            
+            <p:outputLabel for="password" value="Nova lozinka:" />
+            <p:password id="password2" value="#{lozinkaKontroler.noviPass}" required="true" label="password" />
+            
+            <p:outputLabel for="password" value="Ponovi novu lozinku:" />
+            <p:password id="password" value="#{lozinkaKontroler.ponoviPass}" required="true" label="password" />
+            
+            <f:facet name="footer">
+                <p:commandButton value="Promeni lozinku" action="#{lozinkaKontroler.promeniPass()}" update="pan"></p:commandButton>
+            </f:facet>
+            </p:panelGrid>  
+               
+            </p:panel>
+        </h:form>
+        <h:form>
+            <p:panel>
+                <p:commandButton value="Pocetna strana" action="#{supervizorKontroler.logout()}" class="logout"></p:commandButton>
+            </p:panel>
+        </h:form>
+        </center>
+            
+        <h:form>
+            <p:outputPanel class="footer">Promena lozinke - Magdalena Stankovic 2016/0065</p:outputPanel>
+   
+        </h:form>  
+        
+    </h:body>
+</html>
+
